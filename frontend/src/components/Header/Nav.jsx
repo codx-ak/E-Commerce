@@ -12,6 +12,7 @@ import Menu from '@mui/material/Menu';
 import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
+import {Link} from 'react-router-dom'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -86,10 +87,8 @@ const Nav = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Cart</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My Orders</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Offers</MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to='/profile'>Profile</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to='/orders'>Orders</Link></MenuItem>
     </Menu>
   );
 
@@ -118,12 +117,14 @@ const Nav = () => {
             />
           </Search>
           </Box>
+
           <Box sx={{ display: { xs: 'none', md: 'flex' }, width:'30%',justifyContent:'right' }}>
-            <IconButton size="large" aria-label="" color="inherit">
+            <IconButton size="large" aria-label="" color="inherit" href='/cart'>
             <Badge badgeContent={0} color="error">
               <LocalMallIcon/>
             </Badge>
             </IconButton>
+
             <IconButton
               size="large"
               edge="end"

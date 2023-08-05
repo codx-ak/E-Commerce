@@ -11,7 +11,7 @@ const Banner = () => {
             <Typography variant='h4'> Online Shop</Typography>
             <Typography variant='subtitle1'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration</Typography>
             <br />
-            <Button variant='contained' color='secondary'>Shop Now</Button>
+            <Button variant='contained' color='secondary' href='/products'>Shop Now</Button>
         </div>
         <img src={sideImg} alt="" />
     </div>

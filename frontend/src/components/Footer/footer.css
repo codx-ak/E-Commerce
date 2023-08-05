@@ -1,10 +1,36 @@
 .footer{
-    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+    gap: 2rem;
+    padding-bottom: 20px;
+}
+.footer a{
+    display: block;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    transition: all 0.1s ease-in-out;
+    padding: 7px;
+}
+.footer a:hover{
+    transform: translateX(5px);
+    color: brown;
+}
+.footer h5{
+    padding: 15px;
+    color:white;
+}
+.footer-container{
+    width: 95%;
     height: 400px;
     background-color: rgba(0, 0, 0, 0.877);
     color: white;
-    display: flex;
-    justify-content: space-around;
-    padding-top: 50px;
-    gap: 1rem;
+    border-radius: 20px;
+    margin:20px 30px;
+}
+.footer-container .vertical-bar{
+    margin: 2% 25%;
+   border-bottom: 2px solid white;
+    width: 50%;
+    padding: 20px;
 }

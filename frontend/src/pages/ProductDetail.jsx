@@ -2,20 +2,18 @@ import { Box, Breadcrumbs, Container, Link, Typography } from '@mui/material'
 import React, { useContext } from 'react'
 import ProductDetailCard from '../components/Card/ProductDetailCard'
 import { ProductDataList } from '../Context/ProductData'
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext,ImageWithZoom,Image } from 'pure-react-carousel';
-import 'pure-react-carousel/dist/react-carousel.es.css';
+import {useParams} from 'react-router-dom'
 import Carosal from '../components/Carosal/Carosal'
-
-
 const ProductDetail = () => {
   const Product=useContext(ProductDataList)
-  const filterdProducts =Product[0]
+  let { id } = useParams();
+  const filterdProducts =Product.find(value=>value.id==id)
   return (
     <Container>
       {Product.length &&
       <>
       <Breadcrumbs aria-label="breadcrumb" sx={{margin:2}}>
-        <Link underline="hover" color="inherit" href="/">
+        <Link underline="hover" color="inherit" href="/home">
           Home
         </Link>
         
@@ -24,7 +22,7 @@ const ProductDetail = () => {
         </Typography>
       </Breadcrumbs>
 
-      <Box sx={{display:'flex',gap:2,height:500,padding:1}}>
+      <Box sx={{display:'flex',gap:2,height:550,padding:1}}>
         <Carosal images={filterdProducts.images}/>
         <Box sx={{width:'50%'}}>
           <ProductDetailCard Product={filterdProducts}/>

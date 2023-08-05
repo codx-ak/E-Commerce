@@ -8,7 +8,7 @@ const Register = () => {
 
   return (
     <Container>
-    <Button variant='text' startIcon={<ArrowBack/>} sx={{marginTop:3}}>Back</Button>
+    <Button variant='text' startIcon={<ArrowBack/>} sx={{marginTop:3}}  href='/home'>Back</Button>
     <Box sx={{display:'flex',justifyContent:"center",alignItems:"center",height:550}}>
     <form action="" method="post" onSubmit={handleSubmit((e)=>console.log(e))}>
     <Card variant='outlined'sx={{display:'flex',justifyContent:"center",alignItems:"center",flexFlow:'column',gap:5,padding:3,width:350}}>
@@ -17,7 +17,7 @@ const Register = () => {
       <TextField {...register("Email",{required:"Enter Email"})} variant='standard'  label="Enter Email" type='email'/>
       <TextField {...register("Psw",{required:"Enter Password"})} variant='standard'  label="Enter Password" type='password'/>
       <Box sx={{width:"100%",display:'flex',justifyContent:"space-around",alignItems:"center"}}>
-      <Button variant='outlined' >Login</Button>
+      <Button variant='outlined' href='/login' >Login</Button>
       <Button variant='contained' type='submit' >Create Now</Button>
       </Box>
     </Card>
