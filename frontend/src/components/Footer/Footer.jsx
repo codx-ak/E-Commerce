@@ -10,7 +10,7 @@ const Footer = () => {
     <div className="footer">
       <Box sx={{width:'50%'}}>
         <Typography variant='h5'>About</Typography>
-        <Typography variant='subtitle2' sx={{width:'70%'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, unde dignissimos, debitis rem incidunt blanditiis ea iste deleniti corporis in inventore quidem eaque numquam porro architecto quia nam illo animi!</Typography>
+        <Typography  component='p' sx={{width:'70%'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, unde dignissimos, debitis rem incidunt blanditiis ea iste deleniti corporis in inventore quidem eaque numquam porro architecto quia nam illo animi!</Typography>
       </Box>
       <Box sx={{width:'25%'}}>
       <Typography variant='h5'>Links</Typography>

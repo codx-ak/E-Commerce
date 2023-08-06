@@ -24,7 +24,7 @@ const ProductDetail = () => {
 
       <Box sx={{display:'flex',gap:2,height:550,padding:1}}>
         <Carosal images={filterdProducts.images}/>
-        <Box sx={{width:'50%'}}>
+        <Box>
           <ProductDetailCard Product={filterdProducts}/>
         </Box>
 

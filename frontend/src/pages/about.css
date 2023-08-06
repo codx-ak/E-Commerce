@@ -1,0 +1,11 @@
+.about p{
+    text-align: justify;
+    color: gray;
+    width: 70%;
+    padding: 20px 200px;
+}
+
+.about h4{
+    text-align: center;
+    margin: 10px 0;
+}

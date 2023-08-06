@@ -1,0 +1,29 @@
+.cartItem{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cartItem .cart-btn-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.cart-btn-group button{
+    background-color: rgba(211, 211, 211, 0.582);
+}
+.cart-price-card{
+    width: 30%;
+    padding: 20px;
+}
+.cart-price-card button{
+    width: 100%;
+    margin-top: 5px;
+}
+.cart-price-card p{
+    padding: 5px;
+}

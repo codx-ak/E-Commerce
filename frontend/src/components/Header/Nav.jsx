@@ -96,9 +96,9 @@ const Nav = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar sx={{margin:'0 30px'}}>
           <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' },width:'30%' }}
