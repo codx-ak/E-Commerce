@@ -3,10 +3,11 @@ import React from 'react'
 import AvatarImg from '../assets/avatar.png'
 import './profile.css'
 import { ArrowBack } from '@mui/icons-material'
+import BackButton from '../components/BackButton/BackButton'
 const Profile = () => {
   return (
     <Container >
-        <Button variant='text' startIcon={<ArrowBack/>} sx={{marginTop:3}}  href='/home'>Back</Button>
+        <BackButton/>
         <Box className='profile'>
             <Card className='card' variant='outlined'>
                 <Avatar alt="Ak" src={AvatarImg} sx={{ width: 80, height: 80 }}/>

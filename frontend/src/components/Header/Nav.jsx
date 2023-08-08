@@ -13,6 +13,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import {Link} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -56,6 +57,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 const Nav = () => {
+  const CartCount=useSelector(state=>state.CartStore.value)
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -73,6 +76,7 @@ const Nav = () => {
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
+    className='header-menu'
       anchorEl={anchorEl}
       anchorOrigin={{
         vertical: 'top',
@@ -119,10 +123,12 @@ const Nav = () => {
           </Box>
 
           <Box sx={{ display: { xs: 'none', md: 'flex' }, width:'30%',justifyContent:'right' }}>
-            <IconButton size="large" aria-label="" color="inherit" href='/cart'>
-            <Badge badgeContent={0} color="error">
+            <IconButton size="large" aria-label="" color="inherit">
+              <Link to='/cart'>
+            <Badge badgeContent={CartCount.length} color="error">
               <LocalMallIcon/>
             </Badge>
+            </Link>
             </IconButton>
 
             <IconButton

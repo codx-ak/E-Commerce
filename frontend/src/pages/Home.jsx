@@ -18,7 +18,7 @@ const Home = () => {
     <Typography variant='h4' sx={{textAlign:'center'}}>Popular Products</Typography>
     <Box sx={{display:'flex',flexWrap:'wrap',gap:'5px',marginTop:4}}>
       {FilteredByRating.length ? FilteredByRating.map((product)=>{
-        return(<Card variant="outlined" sx={{width:280,height:350,cursor:'pointer'}} key={product.id}><Link to={`/product/${product.id}`}><ProductCard ProductData={product}/></Link></Card>)
+        return(<Card variant="outlined" sx={{width:280,height:350,cursor:'pointer'}} key={product.id}><ProductCard ProductData={product}/></Card>)
       }):<Typography variant='h4' color='gray' sx={{textAlign:'center',padding:'10%',width:'100%'}}>No Products Available</Typography>}
     </Box>
       {FilteredByBrand.length ?
@@ -26,7 +26,7 @@ const Home = () => {
     <Typography variant='h4' sx={{textAlign:'center',marginTop:10}}>Brand Products</Typography>
     <Box sx={{display:'flex',flexWrap:'wrap',gap:'5px',marginTop:4}}>
       {FilteredByBrand.map((product)=>{
-        return(<Card variant="outlined" sx={{width:280,height:350,cursor:'pointer'}} key={product.id}><Link to={`/product/${product.id}`}><ProductCard ProductData={product}/></Link></Card>)
+        return(<Card variant="outlined" sx={{width:280,height:350,cursor:'pointer'}} key={product.id}><ProductCard ProductData={product}/></Card>)
       })}
     </Box>
     </>

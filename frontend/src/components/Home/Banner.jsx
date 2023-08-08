@@ -2,7 +2,7 @@ import React from 'react'
 import sideImg from '../../assets/img-1.png'
 import './banner.css'
 import { Button, Typography } from '@mui/material'
-
+import { Link } from 'react-router-dom'
 const Banner = () => {
   return (
     <div className="home-banner">
@@ -11,7 +11,7 @@ const Banner = () => {
             <Typography variant='h4'> Online Shop</Typography>
             <Typography variant='subtitle1'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration</Typography>
             <br />
-            <Button variant='contained' color='secondary' href='/products'>Shop Now</Button>
+            <Button variant='contained' color='secondary'><Link to='/products'>Shop Now </Link></Button>
         </div>
         <img src={sideImg} alt="" />
     </div>

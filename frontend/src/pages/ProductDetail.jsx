@@ -1,11 +1,12 @@
-import { Box, Breadcrumbs, Container, Link, Typography } from '@mui/material'
+import { Box, Breadcrumbs, Container, Typography } from '@mui/material'
 import React, { useContext } from 'react'
 import ProductDetailCard from '../components/Card/ProductDetailCard'
 import {useParams} from 'react-router-dom'
 import Carosal from '../components/Carosal/Carosal'
 import { ProductDataList } from '../Context/ProductData'
-const ProductDetail = () => {
+import { Link } from 'react-router-dom'
 
+const ProductDetail = () => {
   let { id } = useParams();
   const {FilterById}=useContext(ProductDataList)
   const filterdProducts =FilterById(id)
@@ -15,8 +16,11 @@ const ProductDetail = () => {
       {filterdProducts &&
       <>
       <Breadcrumbs aria-label="breadcrumb" sx={{margin:2}}>
-        <Link underline="hover" color="inherit" href="/home">
+        <Link to='/home'>
           Home
+        </Link>
+        <Link to='/products'>
+          Products
         </Link>
         
         <Typography>
@@ -26,7 +30,7 @@ const ProductDetail = () => {
 
       <Box sx={{display:'flex',gap:2,height:550,padding:1}}>
         <Carosal images={filterdProducts.images}/>
-        <Box>
+        <Box width='40%'>
           <ProductDetailCard Product={filterdProducts}/>
         </Box>
 

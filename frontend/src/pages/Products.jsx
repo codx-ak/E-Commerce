@@ -7,7 +7,7 @@ const Products = () => {
   
   const {AllProduct,FilteredByMobile,FilteredByLaptops,FilteredByDecoration,FilteredByFragrances}=useContext(ProductDataList)
   
-  const [buttonSelect,setButton]=useState('Mobiles')
+  const [buttonSelect,setButton]=useState('All')
   const [sortProduct,setsortProduct]=useState('')
 
  const [filteredProduct,setProducts]=useState(AllProduct) 
@@ -36,7 +36,7 @@ const Products = () => {
   return (
     <Container>
       <Breadcrumbs aria-label="breadcrumb" sx={{margin:2}}>
-        <Link to='/'>
+        <Link to='/home'>
           Home
         </Link>
         
@@ -47,7 +47,7 @@ const Products = () => {
       <Box>
         <Box sx={{display:'flex',justifyContent:"space-around",alignItems:"center",gap:1}}>
           <Box sx={{display:'flex',gap:1}}>
-          <Button type='button' onClick={()=>setButton("All")} variant={buttonSelect==='All'?'contained':'outlined'}>All</Button>
+          <Button type='button' onClick={()=>setButton("All")}  variant={buttonSelect==='All'?'contained':'outlined'}>All</Button>
           <Button type='button' onClick={()=>setButton("Mobiles")} variant={buttonSelect==='Mobiles'?'contained':'outlined'}>Mobiles</Button>
           <Button type='button' onClick={()=>setButton("Laptops")} variant={buttonSelect==='Laptops'?'contained':'outlined'}>Laptops</Button>
           <Button type='button' onClick={()=>setButton("Decoration")} variant={buttonSelect==='Decoration'?'contained':'outlined'}>Decoration</Button>
@@ -75,7 +75,7 @@ const Products = () => {
         </Box>
         <Box sx={{display:'flex',flexWrap:'wrap',gap:'5px',marginTop:4}}>
         {AllProduct.length ? filteredProduct.map((product,index)=>{
-        return(<Card variant="outlined" sx={{width:280,height:350}} key={index}><Link to={`/product/${product.id}`}><ProductCard ProductData={product}/></Link></Card>)
+        return(<Card variant="outlined" sx={{width:280,height:350}} key={index}><ProductCard ProductData={product}/></Card>)
       }):<Typography variant='h4' color='gray' sx={{textAlign:'center',padding:'10%',width:'100%'}}>No Products Available</Typography>}
         </Box>
       </Box>

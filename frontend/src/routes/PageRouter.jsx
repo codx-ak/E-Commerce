@@ -14,6 +14,7 @@ const Checkout=React.lazy(()=>import('../pages/Checkout'))
 const Cart=React.lazy(()=>import('../pages/Cart'))
 const ProfilePage=React.lazy(()=>import('../pages/Profile'))
 const MyOrders=React.lazy(()=>import('../pages/MyOrders'))
+const Payment=React.lazy(()=>import('../pages/Payment'))
 
 
 const PageRouter = () => {
@@ -33,6 +34,7 @@ const PageRouter = () => {
     <Route path='product/:id' element={<ProductDetail />}/>
     <Route path='cart/checkout' element={<Checkout />}/>
     <Route path='orders' element={<MyOrders />}/>
+    <Route path='cart/checkout/payment' element={<Payment />}/>
    </Routes>
     </ProductData>
    </Suspense>

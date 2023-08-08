@@ -3,14 +3,14 @@ import { Box, Button, Card, Container, TextField, Typography} from '@mui/materia
 import {useForm} from "react-hook-form"
 import { ArrowBack } from '@mui/icons-material'
 import './auth.css'
-
+import BackButton from '../components/BackButton/BackButton'
 const Login = () => {
 
   const {register,handleSubmit,formState:{errors}}=useForm()
 
   return (
     <Container className='Auth'>
-      <Button variant='text' startIcon={<ArrowBack/>} sx={{marginTop:3}}  href='/home'>Back</Button>
+      <BackButton/>
       <Box sx={{display:'flex',justifyContent:"center",alignItems:"center",height:550}}>
     <form action="" method="post" onSubmit={handleSubmit((e)=>console.log(e))}>
       <Card className='card' variant='outlined'>

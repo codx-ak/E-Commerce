@@ -15,5 +15,17 @@ img{
 }
 a{
   text-decoration: none !important;
-  color: black;
+  color: white;
+}
+.BackBtn a{
+  color: #1976d2;
+}
+.MuiBreadcrumbs-li a{
+  color: #1976d2;
+}
+.BuyBtn a{
+  color: #ed6c02;
+}
+.header-menu ul{
+  background-color: blue;
 }
