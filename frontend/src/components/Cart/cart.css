@@ -27,3 +27,29 @@
 .cart-price-card p{
     padding: 5px;
 }
+.cartItem img{
+    width: 10%;
+    height: 50px;
+    object-fit: cover;
+    overflow: hidden;
+}
+.cart-heading{
+    display: flex;
+    text-align: center;
+    color: gray;
+    padding-bottom: 20px;
+}
+.cart-heading p{
+    font-weight: bold;
+}
+.clearBtn svg{
+    color: rgb(172, 171, 171);
+    height: 20px;
+}
+.cart-price-card button{
+    background-color:rgba(29, 29, 29, 0.877);
+    margin:5% 25%;
+}
+.cart-price-card button:hover{
+    background-color: rgb(29, 29, 29);
+}

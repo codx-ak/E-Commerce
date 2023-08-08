@@ -75,7 +75,7 @@ const Products = () => {
         </Box>
         <Box sx={{display:'flex',flexWrap:'wrap',gap:'5px',marginTop:4}}>
         {AllProduct.length ? filteredProduct.map((product,index)=>{
-        return(<Card variant="outlined" sx={{width:280,height:350}} key={index}><ProductCard ProductData={product}/></Card>)
+        return(<ProductCard key={product.id} ProductData={product}/>)
       }):<Typography variant='h4' color='gray' sx={{textAlign:'center',padding:'10%',width:'100%'}}>No Products Available</Typography>}
         </Box>
       </Box>

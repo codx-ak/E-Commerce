@@ -4,3 +4,21 @@
     padding: 4% 20%;
     margin-top: 20px;
 }
+.ProductCard{
+    width:280px;
+    height:350px;
+    cursor:pointer;
+    border-radius: 15px;
+}
+.ProductCard a{
+    color: black;
+}
+.ProductCard button{
+    width: 90%;
+    margin:0 5%;
+}
+.ProductCard img{
+    object-fit: cover;
+    height:60%;
+    width:100%
+}

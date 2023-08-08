@@ -1,16 +1,17 @@
 .footer{
     display: flex;
     justify-content: space-around;
-    padding: 40px;
+    padding:20px 40px 0 40px;
     gap: 2rem;
-    padding-bottom: 20px;
+}
+.footer button{
+    width: 100%;
+    text-align: left;
 }
 .footer a{
-    display: block;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     transition: all 0.1s ease-in-out;
-    padding: 7px;
+    padding: 3px;
+    width: 100%;
 }
 .footer a:hover{
     transform: translateX(5px);
@@ -21,16 +22,21 @@
     color:white;
 }
 .footer-container{
-    width: 95%;
-    height: 400px;
+    height: fit-content;
     background-color: rgba(0, 0, 0, 0.877);
     color: white;
-    border-radius: 20px;
-    margin:20px 30px;
+    margin-top: 20px;
 }
 .footer-container .vertical-bar{
     margin: 2% 25%;
    border-bottom: 2px solid white;
-    width: 50%;
-    padding: 20px;
+    width: 50%; 
+}
+
+.footer-link{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 25%;
+    text-align: start;
 }

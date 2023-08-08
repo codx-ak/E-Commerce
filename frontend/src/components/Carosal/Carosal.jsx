@@ -13,7 +13,7 @@ const Carosal = ({images}) => {
           })}
         </Box>
         <Box sx={{width:800}}>
-        <img src={displayImage} style={{height:'100%',width:'100%',overflow:'hidden',objectFit:'contain',borderRadius:5}} alt="" />
+        <img src={displayImage} style={{height:'100%',width:'100%',overflow:'hidden',objectFit:'contain',borderRadius:5}} alt={displayImage} />
         </Box>
     </Box>
         }

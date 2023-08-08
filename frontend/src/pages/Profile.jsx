@@ -2,7 +2,6 @@ import { Avatar, Box, Button, Card, Container, TextField } from '@mui/material'
 import React from 'react'
 import AvatarImg from '../assets/avatar.png'
 import './profile.css'
-import { ArrowBack } from '@mui/icons-material'
 import BackButton from '../components/BackButton/BackButton'
 const Profile = () => {
   return (

@@ -2,14 +2,18 @@ import { Button, Card, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+
+
 
 const PriceCard = ({Product}) => {
-    const [Discount,setDiscount]=useState(0)
     const [Price,setPrice]=useState(0)
 
-    useEffect(()=>{
-      setDiscount(Math.round(Product.reduce((prev,curr)=>prev+curr.discountPercentage,0)))
-    },[Product.length])
     useEffect(()=>{
         setPrice(Product.reduce((prev,curr)=>prev+curr.price*curr.count,0))
     },Product.count)
@@ -19,15 +23,27 @@ const PriceCard = ({Product}) => {
         {
             Product.length && 
             <>
-            <Typography component='p' variant='h5'> Price Details</Typography>
-            {
-                Product.length && Product.map((product,index)=><Typography  color='gray' component='p'> Item {index+1} : $ {product.price * product.count}.00</Typography>)
-            }
-          <Typography  color='gray' component='p'> Discount : {Discount}%</Typography>
-          <Typography  color='gray' component='p'> Extra Charges : $ 0</Typography>
-          <Typography  color='gray' component='p'> Total Products : {Product.length}</Typography>
-          <Typography sx={{fontWeight:'bold'}} color='gray' component='p'> Total Amount: $ {Price}.00</Typography>
-          <Button variant="contained" color='success' type='button' endIcon={<ShoppingCartIcon />}><Link to='checkout'>Buy Now</Link></Button>
+            <TableContainer sx={{width:'100%'}}>
+              <Typography variant='h6' sx={{textTransform:'uppercase',textAlign:'center'}}>Order Summary</Typography>
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell sx={{color:'gray'}}>Subtotal</TableCell>
+                  <TableCell sx={{color:'gray'}} align="right"> $ {Price}.00</TableCell>
+                </TableRow>
+                <TableRow >
+                  <TableCell sx={{color:'gray'}}>Shipping</TableCell>
+                  <TableCell sx={{color:'gray'}}  align="right"> free</TableCell>
+                </TableRow>
+                <TableRow sx={{border:0}} >
+                  <TableCell sx={{fontWeight:'bold',color:'gray'}}> Total</TableCell>
+                  <TableCell sx={{fontWeight:'bold',color:'gray'}} align="right"> $ {Price}.00</TableCell>
+                </TableRow>
+              </TableBody>
+            
+          <Button variant="contained" type='button' endIcon={<ShoppingCartIcon />}><Link to='checkout'>Buy Now</Link></Button>
+            </Table>
+            </TableContainer>
             </>
         }
         </Card>

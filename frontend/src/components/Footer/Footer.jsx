@@ -1,8 +1,12 @@
 import React from 'react'
-import GitHubIcon from '@mui/icons-material/GitHub';
-import { Avatar, Box, Chip, Typography } from '@mui/material';
+import {Box, Button,Typography } from '@mui/material';
 import {Link} from 'react-router-dom'
 import './footer.css'
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LanguageIcon from '@mui/icons-material/Language';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 const Footer = () => {
   return (
@@ -12,24 +16,24 @@ const Footer = () => {
         <Typography variant='h5'>About</Typography>
         <Typography  component='p' sx={{width:'70%'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, unde dignissimos, debitis rem incidunt blanditiis ea iste deleniti corporis in inventore quidem eaque numquam porro architecto quia nam illo animi!</Typography>
       </Box>
-      <Box sx={{width:'25%'}}>
+      <Box className='footer-link'>
       <Typography variant='h5'>Links</Typography>
-      <Link to='/'>Home</Link>
-      <Link to='/about'>About</Link>
-      <Link to='/products'>Category</Link>
-      <Link to=''>Help</Link>
+      <Button startIcon={<KeyboardDoubleArrowRightIcon/>} variant='text'><Link to='/home'>Home</Link></Button>
+      <Button startIcon={<KeyboardDoubleArrowRightIcon/>} variant='text'><Link to='/about'>About</Link></Button>
+      <Button startIcon={<KeyboardDoubleArrowRightIcon/>} variant='text'><Link to='/cart'>Cart</Link></Button>
+      <Button startIcon={<KeyboardDoubleArrowRightIcon/>} variant='text'><Link to='/contact'>Contact</Link></Button>
       </Box>
-      <Box sx={{width:'25%'}}>
+      <Box className='footer-link'>
       <Typography variant='h5'>Contact us</Typography>
-      <Link to='/'>LinkedIn</Link>
-      <Link to='/'>Instagram</Link>
-      <Link to='/'>Portfolio</Link>
-      <Link to='/contact'>Contact us</Link>
+      <Button startIcon={<LinkedInIcon/>} variant='text'><Link to='https://www.linkedin.com/in/ak-moorthi/'>LinkedIn</Link></Button>
+      <Button startIcon={<InstagramIcon/>} variant='text'><Link to='https://www.instagram.com/codx_ak/'>Instagram</Link></Button>
+      <Button startIcon={<LanguageIcon/>} variant='text'><Link to='https://codx-paradise.github.io/Portfolio/'>Portfolio</Link></Button>
+      <Button startIcon={<GitHubIcon/>} variant='text'><Link to='https://github.com/codx-paradise'>GitHub</Link></Button>
       </Box>
-
+      
     </div>
     <div className="vertical-bar"></div>
-    <Typography variant='subtitle2' sx={{textAlign:'center'}}> Copyright 2023 All Rights Reserved Ak Moorthi</Typography>
+    <Typography variant='subtitle2' sx={{textAlign:'center',paddingBottom:1}}> Copyright 2023 All Rights Reserved</Typography>
     </div>
   )
 }
