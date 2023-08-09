@@ -31,13 +31,13 @@ const Checkout = () => {
       <TextField {...register("Address",{required:"Enter Address"})} variant='outlined'  label="Street" type='text'/>
       <TextField {...register("city",{required:"Enter City"})} variant='outlined'  label="City" type='text'/>
       <Box>
-      <TextField {...register("State",{required:"Enter State"})} variant='outlined' sx={{width:'45%',marginRight:1}}  label="State" type='text'/>
-      <TextField {...register("Pincode",{required:"Enter Pincode"})} variant='outlined' sx={{width:'45%'}} label="Postal" type='number'/>
+      <TextField {...register("State",{required:"Enter State"})} variant='outlined' sx={{width:200,marginRight:2}}  label="State" type='text'/>
+      <TextField {...register("Pincode",{required:"Enter Pincode"})} variant='outlined' sx={{width:110}} label="Postal" type='number'/>
       </Box>
       
-      <Box sx={{display:'flex',padding:2,justifyContent:"center",gap:3,alignItems:"center"}}>
+      <Box sx={{display:'flex',justifyContent:"center",gap:3,alignItems:"center"}}>
       <Button variant='contained'><Link to='/cart'>Cancel</Link></Button>
-      <Button variant='outlined' type='submit' startIcon={<PaidIcon/>} >Pay Now</Button>
+      <Button variant='outlined' type='submit' startIcon={<PaidIcon/>} >Checkout Now</Button>
       </Box>
       </Card>
     </form>
