@@ -1,0 +1,20 @@
+.order-set p{
+    color: gray;
+}
+.order-set .border{
+    border-bottom: 1px solid rgba(211, 211, 211, 0.801);
+    padding: 5px 10px;
+}
+.order-item{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+.order-item img{
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    object-fit: cover;
+}

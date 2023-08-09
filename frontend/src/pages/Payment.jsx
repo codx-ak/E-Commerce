@@ -1,9 +1,22 @@
 import React,{useState} from 'react'
-import {Box, Container, Typography} from '@mui/material'
+import {Box, Container,Typography} from '@mui/material'
 import StepperPage from '../components/Process/StepperPage'
 import PaymentCard from '../components/Payment/PaymentCard'
+import {useForm} from "react-hook-form"
+import {useNavigate} from 'react-router-dom'
+
 const Payment = () => {
 
+  const navigate=useNavigate()
+  const {register,handleSubmit}=useForm()
+  function ValidateSubmit(){
+    try{
+      navigate('/orders',{replace:true})
+    }
+    catch(err){
+      alert(err)
+    }
+  }
   const [cardNumber,setCardNumber]=useState(null)
   const [userName,setUserName]=useState(null)
   const [expMonth,setExpMonth]=useState(null)
@@ -12,7 +25,7 @@ const Payment = () => {
   const [rotateCard,setRotateCard]=useState(false)
   const [cardType,setCardType]=useState('default')
 
-   function cardd(){
+   function cartTypeCheck(){
       const cardNumber2=String(cardNumber?cardNumber:null);
       if(cardNumber2.startsWith(4,0)) return setCardType('visa')
       if(cardNumber2.startsWith(34||37,0)) return setCardType('amex')
@@ -34,27 +47,26 @@ let values={
 }
 
   return (
-    <Box  className='payment'>
     <Container sx={{paddingTop:3}}>
       <StepperPage activeStep={2}/>
-        <>
+    <Box className='payment'>
     <div className="card-form">
-    <div className="card-list">
-      <PaymentCard values={values}/>
-    </div>
+    <form action="" method="post" onSubmit={handleSubmit(ValidateSubmit)}>
     <div className="card-form__inner">
-
+      <Typography variant='h6' textAlign='center' sx={{marginBottom:2}}>Payment Info</Typography>
       <div className="card-input">
         <label htmlFor="cardNumber" className="card-input__label">Card Number</label>
         <input
+        {...register("CardNumber",{required:true})}
           type="tel"
           id="cardNumber"
           className="card-input__input"
           maxLength={16}
+          minLength={16}
           data-card-field
           onFocus={(e)=>setRotateCard(false)}
           onChange={(e)=>{setCardNumber(e.target.value)
-                          cardd()}}
+                          cartTypeCheck()}}
           autoComplete="true"
         />
       </div>
@@ -62,9 +74,11 @@ let values={
       <div className="card-input">
         <label htmlFor="cardName" className="card-input__label">Card Holders</label>
         <input
+        {...register("CardName",{required:true})}
           type="text"
           id="cardName"
           maxLength={15}
+          minLength={1}
           onFocus={(e)=>setRotateCard(false)}
           onChange={(e)=>setUserName(e.target.value)}
           className="card-input__input"
@@ -84,6 +98,7 @@ let values={
               onFocus={(e)=>setRotateCard(false)}
               data-card-field
               defaultValue={0}
+              required
             >
               <option disabled value={0}>Month</option>
                 <option value="1">1</option>
@@ -108,6 +123,7 @@ let values={
               onChange={(e)=>setExpYear(e.target.value)}
               onFocus={(e)=>setRotateCard(false)}
               defaultValue={1}
+              required
             >
               <option disabled value={1} >Year</option>
               <option value="23">2023</option>
@@ -129,8 +145,10 @@ let values={
             <label htmlFor="cardCvv" className="card-input__label">CVV</label>
             <input
               type="tel"
+              {...register("Cardcvv",{required:true})}
               className="card-input__input"
               maxLength={3}
+              minLength={3}
               id="cardCvv"
               data-card-field
               autoComplete="true"
@@ -141,13 +159,17 @@ let values={
         </div>
       </div>
 
-      <button className="card-form__button">Submit</button>
+      <button className="card-form__button" type='submit'>Checkout Now</button>
     </div>
-  </div>
-    </>
-
-    </Container>
+    </form>
+    </div>
+    <div className="card-form">
+    <div className="card-list">
+      <PaymentCard values={values}/>
+    </div>
+    </div>
     </Box>
+    </Container>
   )
 }
 
