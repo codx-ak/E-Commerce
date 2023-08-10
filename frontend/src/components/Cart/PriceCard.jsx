@@ -8,11 +8,11 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import {ProductDataList} from '../../Context/ProductData'
+import {ArrowForward} from '@mui/icons-material'
 
 const PriceCard = ({Product}) => {
     const [Price,setPrice]=useState(0)
     const {AuthCheck}=useContext(ProductDataList)
-
     useEffect(()=>{
         setPrice(Product.reduce((prev,curr)=>prev+curr.price*curr.count,0))
     },Product.count)
@@ -38,13 +38,17 @@ const PriceCard = ({Product}) => {
                   <TableCell sx={{fontWeight:'bold',color:'gray'}}> Total</TableCell>
                   <TableCell sx={{fontWeight:'bold',color:'gray'}} align="right"> $ {Price}.00</TableCell>
                 </TableRow>
+                <TableRow>
+                  <TableCell sx={{border:0}} >
+                    {
+                      !AuthCheck ?
+                      <Link to='checkout'><Button variant="contained" endIcon={<ShoppingCartIcon />}>Buy Now</Button></Link>
+                      :
+                      <Link to='/login'><Button variant="contained"  endIcon={<ArrowForward />}>Login Now</Button></Link>
+                    }
+                  </TableCell>
+                </TableRow>
               </TableBody>
-            {
-              AuthCheck ?
-              <Button variant="contained" type='button' endIcon={<ShoppingCartIcon />}><Link to='/login'>Login Now</Link></Button>
-              :
-              <Button variant="contained" type='button' endIcon={<ShoppingCartIcon />}><Link to='checkout'>Buy Now</Link></Button>
-            }
             </Table>
             </TableContainer>
             </>

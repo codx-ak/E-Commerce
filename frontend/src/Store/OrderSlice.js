@@ -72,13 +72,18 @@ const OrderSlice=createSlice({
 
         AddOrder:(state,action)=>{
             const Product={
-                ...action.payload.product,
+                orderId:12345,
                 date:new Date(),
-                status:'Order Placed',
-                deliveryDate:new Date(),
-                total:action.payload.total
+                totalprice:10000,
+                product:[
+                    {...action.payload.Product,
+                    status:'Order Placed',
+                    deliveryDate:new Date()}
+                ],
+                User:action.payload.User
                 }
             state.value.push(Product)
+            console.log(state.value);
             alert("Purchase Successfully")     
         },
 

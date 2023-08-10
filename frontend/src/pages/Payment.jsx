@@ -4,14 +4,18 @@ import StepperPage from '../components/Process/StepperPage'
 import PaymentCard from '../components/Payment/PaymentCard'
 import {useForm} from "react-hook-form"
 import {useNavigate} from 'react-router-dom'
+import { ClearCart } from '../Store/CartSlice'
+import {useDispatch} from 'react-redux'
 
 const Payment = () => {
 
   const navigate=useNavigate()
   const {register,handleSubmit}=useForm()
+  const dispatch=useDispatch()
   function ValidateSubmit(){
     try{
       navigate('/orders',{replace:true})
+      dispatch(ClearCart())
     }
     catch(err){
       alert(err)

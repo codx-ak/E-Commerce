@@ -5,7 +5,7 @@ import './checkout.css'
 import {Link,useNavigate} from 'react-router-dom'
 import PaidIcon from '@mui/icons-material/Paid';
 import StepperPage from '../components/Process/StepperPage'
-
+import axios from 'axios'
 const Checkout = () => {
   const navigate=useNavigate()
   const {register,handleSubmit,formState:{errors}}=useForm()
@@ -26,13 +26,13 @@ const Checkout = () => {
     <form action="" method="post" onSubmit={handleSubmit(ValidateSubmit)}>
       <Card variant='outlined' className='form-container'>
       <Typography variant='h6'textAlign='center' paddingTop={1} >Billing Details</Typography>
-      <TextField {...register("Name",{required:"Enter Name"})} variant='outlined'  label="Name" type='text'/>
-      <TextField {...register("mobile",{required:"Enter mobile"})} variant='outlined'  label="Mobile" type='number'/>
-      <TextField {...register("Address",{required:"Enter Address"})} variant='outlined'  label="Street" type='text'/>
-      <TextField {...register("city",{required:"Enter City"})} variant='outlined'  label="City" type='text'/>
+      <TextField {...register("Name",{required:"Enter Name"})} error={errors.Name?true:false} variant='outlined'  label="Name" type='text'/>
+      <TextField {...register("mobile",{required:"Enter mobile"})} error={errors.mobile?true:false} variant='outlined'  label="Mobile" type='number'/>
+      <TextField {...register("Address",{required:"Enter Address"})} error={errors.Address?true:false} variant='outlined'  label="Street" type='text'/>
+      <TextField {...register("city",{required:"Enter City"})}error={errors.city?true:false}  variant='outlined'  label="City" type='text'/>
       <Box>
-      <TextField {...register("State",{required:"Enter State"})} variant='outlined' sx={{width:200,marginRight:2}}  label="State" type='text'/>
-      <TextField {...register("Pincode",{required:"Enter Pincode"})} variant='outlined' sx={{width:110}} label="Postal" type='number'/>
+      <TextField {...register("State",{required:"Enter State"})} error={errors.State?true:false} variant='outlined' sx={{width:200,marginRight:2}}  label="State" type='text'/>
+      <TextField {...register("Pincode",{required:"Enter Pincode"})} error={errors.Pincode?true:false} variant='outlined' sx={{width:110}} label="Postal" type='number'/>
       </Box>
       
       <Box sx={{display:'flex',justifyContent:"center",gap:3,alignItems:"center"}}>
