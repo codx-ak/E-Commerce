@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import ProductData from '../Context/ProductData'
+
 import Home from '../pages/Home'
 import Loader from '../components/Spinner/Loader'
 
@@ -20,7 +20,6 @@ const Payment=React.lazy(()=>import('../pages/Payment'))
 const PageRouter = () => {
   return (
   <Suspense fallback={<Loader/>}>
-    <ProductData>
    <Routes>
     <Route path='/' element={<Home />}/>
     <Route path='home' element={<Home />}/>
@@ -36,7 +35,6 @@ const PageRouter = () => {
     <Route path='orders' element={<MyOrders />}/>
     <Route path='cart/checkout/payment' element={<Payment />}/>
    </Routes>
-    </ProductData>
    </Suspense>
   )
 }

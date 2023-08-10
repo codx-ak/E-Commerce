@@ -17,10 +17,15 @@ import { Avatar, Button } from '@mui/material';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
 import './header.css'
+import { LogoutAccount } from '../../Auth/Authentication';
+import {useNavigate} from 'react-router-dom'
+import { ProductDataList } from '../../Context/ProductData';
+
 
 const Header = () => {
+  const navigate=useNavigate()
   const CartCount=useSelector(state=>state.CartStore.value)
-  
+  const {AuthCheck,setAuthCheck} = React.useContext(ProductDataList)
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -32,6 +37,7 @@ const Header = () => {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -53,10 +59,13 @@ const Header = () => {
     >
       <MenuItem><Avatar alt="Ak" src={AvatarImg} sx={{ width: 50, height: 50 }}/></MenuItem>
       
-      <MenuItem onClick={handleMenuClose}><Button variant='text' startIcon={<PersonIcon />}> <Link to='/profile'>Account</Link></Button></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Button variant='text' startIcon={<PersonIcon />}> <Link to={AuthCheck?'/login':'/profile'}>Account</Link></Button></MenuItem>
       <MenuItem onClick={handleMenuClose}><Button variant='text' startIcon={<LocalShippingIcon />}> <Link to='/orders'>Orders</Link></Button></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Button variant='text' startIcon={<DoNotDisturbAltIcon />}> <Link to='/orders'>Logout</Link></Button></MenuItem>
-    </Menu>
+      {
+        !AuthCheck &&
+      <MenuItem onClick={handleMenuClose}><Button variant='text' onClick={()=>LogoutAccount(navigate,setAuthCheck)} startIcon={<DoNotDisturbAltIcon />}>Logout</Button></MenuItem>
+    }
+      </Menu>
   );
 
 

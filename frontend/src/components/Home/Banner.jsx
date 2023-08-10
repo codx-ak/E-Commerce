@@ -13,7 +13,7 @@ const Banner = () => {
             <br />
             <Button variant='contained' color='secondary'><Link to='/products'>Shop Now </Link></Button>
         </div>
-        <img src={sideImg} alt="" />
+        <img src={sideImg} alt="sideImg" />
     </div>
   )
 }

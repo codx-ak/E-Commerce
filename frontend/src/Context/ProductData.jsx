@@ -6,6 +6,10 @@ export const ProductDataList=createContext()
 
 const ProductData = ({children}) => {
     
+  let User=localStorage.getItem('user')
+  User=JSON.parse(User) || true
+  const [AuthCheck,setAuthCheck]=useState(!User.status)
+
   const [AllProduct,setAllProduct]=useState([])
   const [FilteredByMobile,setFilteredByMobile]=useState([])
   const [FilteredByLaptops,setFilteredByLaptops]=useState([])
@@ -36,6 +40,8 @@ const ProductData = ({children}) => {
   }
 
   const Product={
+    AuthCheck,
+    setAuthCheck,
     AllProduct,
     FilteredByMobile,
     FilteredByLaptops,

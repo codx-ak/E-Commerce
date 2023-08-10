@@ -53,9 +53,12 @@ const CartSlice=createSlice({
                     data.count--
                 }
             })
+        },
+        ClearCart:(state,action)=>{
+            state.value=[]
         }
 
 }})
 
-export const {AddCart,RemoveCart,ProductCountAdd,ProductCountDel}=CartSlice.actions
+export const {AddCart,RemoveCart,ClearCart,ProductCountAdd,ProductCountDel}=CartSlice.actions
 export default CartSlice.reducer

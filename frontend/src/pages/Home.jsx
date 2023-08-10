@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import ProductCard from '../components/Card/ProductCard'
 import { Box, Button, Card, Container, Typography } from '@mui/material'
 import { ProductDataList } from '../Context/ProductData'
-import {Link} from 'react-router-dom'
 import Banner from '../components/Home/Banner'
 
 const Home = () => {
