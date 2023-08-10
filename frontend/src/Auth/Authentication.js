@@ -22,19 +22,25 @@ export function UpdateAccount(value){
 export function LoginAccount(value,navigate,setAuthCheck){
     let User=localStorage.getItem('user')
     User=JSON.parse(User)
-    if(User.Email==value.Email){
-        if(User.Psw==value.Psw){
-            localStorage.setItem('user',JSON.stringify({...User,status:true}))
-            alert("Login Successfully")
-            setAuthCheck(false)
-            navigate('/home')
+    if(localStorage.length){
+
+        if(User.Email==value.Email){
+            if(User.Psw==value.Psw){
+                localStorage.setItem('user',JSON.stringify({...User,status:true}))
+                alert("Login Successfully")
+                setAuthCheck(false)
+                navigate('/home')
+            }
+            else{
+                alert("Password Error")
+            }
         }
         else{
-            alert("Password Error")
+            alert("Account Not Found")
         }
     }
     else{
-        alert("Account Not Found")
+        navigate('/register')
     }
     
 }
