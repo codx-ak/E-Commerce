@@ -1,8 +1,6 @@
 import React from 'react'
-import {Button, Card, Container,Box, Typography} from '@mui/material'
+import {Container,Box, Typography} from '@mui/material'
 import CartItem from '../components/Cart/CartItem'
-import { ArrowBack } from '@mui/icons-material'
-
 import {useSelector} from 'react-redux'
 import BackButton from '../components/BackButton/BackButton'
 import PriceCard from '../components/Cart/PriceCard';

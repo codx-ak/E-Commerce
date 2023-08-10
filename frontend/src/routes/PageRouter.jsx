@@ -16,7 +16,6 @@ const ProfilePage=React.lazy(()=>import('../pages/Profile'))
 const MyOrders=React.lazy(()=>import('../pages/MyOrders'))
 const Payment=React.lazy(()=>import('../pages/Payment'))
 
-
 const PageRouter = () => {
   return (
   <Suspense fallback={<Loader/>}>

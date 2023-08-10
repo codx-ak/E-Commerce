@@ -1,5 +1,5 @@
 import { Button, Card, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
 import Table from '@mui/material/Table';
@@ -7,11 +7,11 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
-
-
+import {ProductDataList} from '../../Context/ProductData'
 
 const PriceCard = ({Product}) => {
     const [Price,setPrice]=useState(0)
+    const {AuthCheck}=useContext(ProductDataList)
 
     useEffect(()=>{
         setPrice(Product.reduce((prev,curr)=>prev+curr.price*curr.count,0))
@@ -39,8 +39,12 @@ const PriceCard = ({Product}) => {
                   <TableCell sx={{fontWeight:'bold',color:'gray'}} align="right"> $ {Price}.00</TableCell>
                 </TableRow>
               </TableBody>
-            
-          <Button variant="contained" type='button' endIcon={<ShoppingCartIcon />}><Link to='checkout'>Buy Now</Link></Button>
+            {
+              AuthCheck ?
+              <Button variant="contained" type='button' endIcon={<ShoppingCartIcon />}><Link to='/login'>Login Now</Link></Button>
+              :
+              <Button variant="contained" type='button' endIcon={<ShoppingCartIcon />}><Link to='checkout'>Buy Now</Link></Button>
+            }
             </Table>
             </TableContainer>
             </>
