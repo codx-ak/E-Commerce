@@ -5,7 +5,7 @@ import './checkout.css'
 import {Link,useNavigate} from 'react-router-dom'
 import PaidIcon from '@mui/icons-material/Paid';
 import StepperPage from '../components/Process/StepperPage'
-import axios from 'axios'
+
 const Checkout = () => {
   const navigate=useNavigate()
   const {register,handleSubmit,formState:{errors}}=useForm()
