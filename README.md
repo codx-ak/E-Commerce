@@ -4,7 +4,7 @@ Our Simple React E-commerce Project is a minimalist online shopping platform bui
 
 ## Frontend Design
 
-Live : https://codx-paradise-ecommerce.netlify.app/
+Live : https://codx-ecommerce.netlify.app/
 
 ## Backend 
 
