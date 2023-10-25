@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
 import ProductCard from '../components/Card/ProductCard'
-import { Box, Button, Card, Container, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import { ProductDataList } from '../Context/ProductData'
-import Banner from '../components/Home/Banner'
 
 const Home = () => {
   const {FilteredByRating,FilteredByBrand}=useContext(ProductDataList)
@@ -10,7 +9,7 @@ const Home = () => {
   return (
     <>
     <Box>
-      <Banner/>
+      <Box className="home-banner"></Box>
     </Box>
     <Container>
     <Typography variant='h4' sx={{textAlign:'center'}}>Popular Products</Typography>

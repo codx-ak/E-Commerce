@@ -13,9 +13,14 @@ img{
   overflow: hidden;
   object-fit: cover;
 }
+.home-banner{
+  height: 350px;
+  background-image: url(./assets/home.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 a{
   text-decoration: none !important;
-  color: white;
 }
 .BackBtn a{
   color: #1976d2;

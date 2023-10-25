@@ -2,117 +2,88 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Badge from '@mui/material/Badge';
+import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import PersonIcon from '@mui/icons-material/Person';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
-import {Link} from 'react-router-dom'
-import {useSelector} from 'react-redux'
-import SearchBar from './SearchBar';
-import AvatarImg from '../../assets/avatar.png'
-import { Avatar, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
-import './header.css'
-import { LogoutAccount } from '../../Auth/Authentication';
-import {useNavigate} from 'react-router-dom'
-import { ProductDataList } from '../../Context/ProductData';
+import PersonIcon from '@mui/icons-material/Person';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import './nav.css'
+import { Authenticate } from '../../Auth/AuthContext' 
+import SettingsIcon from '@mui/icons-material/Settings';
 
-
-const Header = () => {
-  const navigate=useNavigate()
-  const CartCount=useSelector(state=>state.CartStore.value)
-  const {AuthCheck,setAuthCheck} = React.useContext(ProductDataList)
+export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  //auth value checking
+  const { IsAuth } = React.useContext(Authenticate);
 
-  const isMenuOpen = Boolean(anchorEl);
-
-  const handleProfileMenuOpen = (event) => {
+  const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuClose = () => {
+  const handleClose = () => {
     setAnchorEl(null);
   };
 
-
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-    className='header-menu'
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem><Avatar alt="Ak" src={AvatarImg} sx={{ width: 50, height: 50 }}/></MenuItem>
-      
-      <MenuItem onClick={handleMenuClose}><Button variant='text' startIcon={<PersonIcon />}> <Link to={AuthCheck?'/login':'/profile'}>Account</Link></Button></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Button variant='text' startIcon={<LocalShippingIcon />}> <Link to='/orders'>Orders</Link></Button></MenuItem>
-      {
-        !AuthCheck &&
-      <MenuItem onClick={handleMenuClose}><Button variant='text' onClick={()=>LogoutAccount(navigate,setAuthCheck)} startIcon={<DoNotDisturbAltIcon />}>Logout</Button></MenuItem>
-    }
-      </Menu>
-  );
-
-
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar sx={{margin:'0 30px'}}>
-          <Typography
-            variant="h5"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' },width:'30%' }}
-          >
-            E Commerce
+    <Box sx={{ flexGrow: 1}}>
+      <AppBar sx={{backgroundColor:'white'}} position='static'>
+        <Toolbar>
+          <Typography variant="h5" component="div" sx={{ flexGrow: 1,color:'orange',fontSize:'30px' }}>
+            Codx.
           </Typography>
-          
-          <Box sx={{ width:'40%' }} >
-          <SearchBar/>
-          </Box>
-
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, width:'30%',justifyContent:'right' }}>
-            <IconButton size="large" aria-label="" color="inherit">
-              <Link to='/cart'>
-            <Badge badgeContent={CartCount.length} color="error">
-              <LocalMallIcon/>
-            </Badge>
-            </Link>
-            </IconButton>
-
-            <IconButton
+            <div>
+            <Link to='/cart'>
+              <IconButton
               size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <PersonIcon />
-            </IconButton>
-          </Box>
-          
-        </Toolbar>
+              >
+              <LocalMallIcon sx={{color:'black',fontSize:'20px'}}/>
+              </IconButton>
+              </Link>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                sx={{margin:'0 10px'}}
+              >
+                <SettingsIcon sx={{color:'black',fontSize:'20px'}} />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <Link to='/home'><MenuItem onClick={handleClose}><Button startIcon={<HomeIcon/>}>Home</Button></MenuItem></Link>
+                <Link to='/orders'><MenuItem onClick={handleClose}><Button startIcon={<StorefrontIcon/>}>Products</Button></MenuItem></Link>
+                <Link to='/orders'><MenuItem onClick={handleClose}><Button startIcon={<LocalShippingIcon/>}>Orders</Button></MenuItem></Link>
+                {
+                  IsAuth ?<Link to='/profile'><MenuItem onClick={handleClose}><Button startIcon={<PersonIcon/>}>Account</Button></MenuItem></Link>
+                  : <Link to='/login'><MenuItem onClick={handleClose}><Button startIcon={<AdminPanelSettingsIcon/>}>Login</Button></MenuItem></Link>
+                }
+                
+                
+              </Menu>
+            </div>
+            </Toolbar>
       </AppBar>
-      {renderMenu}
     </Box>
   );
 }
-
-export default Header

@@ -1,0 +1,21 @@
+#menu-appbar ul{
+    padding:10px 20px;
+    min-width: 200px !important;
+}
+
+#menu-appbar ul a{
+    width: 100%;
+    text-decoration: none;
+    text-align: justify;
+}
+#menu-appbar ul button{
+    color: rgba(0, 0, 0, 0.544);
+    background-color: transparent !important;
+}
+
+#menu-appbar{
+    top: 45px;
+}
+header{
+    width: 100vw !important;
+}
