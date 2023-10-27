@@ -33,18 +33,12 @@ const CartSlice = createSlice({
     },
 
     ProductCountAdd: (state, action) => {
-      state.value.find((data) => {
-        if (action.payload.id === data.id) {
-          data.count++;
-        }
-      });
+      const ProductIndex =state.value.findIndex((data)=>action.payload.id === data.id)
+      state.value[ProductIndex].count +=1
     },
     ProductCountDel: (state, action) => {
-      state.value.find((data) => {
-        if (action.payload.id === data.id) {
-          data.count--;
-        }
-      });
+      const ProductIndex =state.value.findIndex((data)=>action.payload.id === data.id)
+      state.value[ProductIndex].count -=1
     },
     ClearCart: (state, action) => {
       state.value = [];
