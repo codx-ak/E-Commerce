@@ -27,12 +27,7 @@ const CartSlice = createSlice({
     },
 
     RemoveCart: (state, action) => {
-      let ProductIndex = null;
-      state.value.find((data, index) => {
-        if (action.payload.id == data.id) {
-          ProductIndex = index;
-        }
-      });
+      const ProductIndex =state.value.findIndex((data)=>action.payload.id === data.id)
       state.value.splice(ProductIndex, 1);
       toast.error("Product Removed");
     },

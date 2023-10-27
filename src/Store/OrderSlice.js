@@ -27,12 +27,7 @@ const OrderSlice=createSlice({
         },
 
         RemoveOrder:(state,action)=>{
-            let ProductIndex=null
-            state.value.find((data,index)=>{
-                if(action.payload.orderId == data.orderId){
-                    ProductIndex=index
-                }
-            })
+            const ProductIndex =state.value.findIndex((data)=>action.payload.id === data.id)
             state.value.splice(ProductIndex,1)
             toast.error("Order Removed");         
                

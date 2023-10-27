@@ -1,8 +1,7 @@
 import React from 'react'
-import {Button, Card,Box, Typography, Rating, IconButton} from '@mui/material'
+import {Card,Box, Typography, Rating, IconButton} from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import DeleteIcon from '@mui/icons-material/Delete';
 import './cart.css'
 import {useDispatch} from 'react-redux'
 import {RemoveCart,ProductCountAdd,ProductCountDel} from '../../Store/CartSlice'
@@ -13,7 +12,7 @@ const CartItem = ({Product}) => {
   return (
 
     <Card variant='outlined' className='cartItem'>
-      <img src={Product.thumbnail} alt="Product Image" loading='lazy' />
+      <img src={Product.thumbnail} alt={Product.title} loading='lazy' />
     <Box sx={{width:'30%',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>
       <Typography component='p' variant='subtitle1'>{Product.title}</Typography>
       <Rating readOnly value={Product.rating} size='small' precision={0.5}/>
