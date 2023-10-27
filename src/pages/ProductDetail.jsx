@@ -1,18 +1,29 @@
 import { Box, Breadcrumbs, Container, Typography } from '@mui/material'
-import React, { useContext } from 'react'
+import React from 'react'
 import ProductDetailCard from '../components/Card/ProductDetailCard'
 import {useParams} from 'react-router-dom'
 import Carosal from '../components/Carosal/Carosal'
-import { ProductDataList } from '../Context/ProductData'
+
 import { Link } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import Loader from '../components/Spinner/Loader'
+import { FilterProductID } from '../Api/ProductApi'
 
 const ProductDetail = () => {
   let { id } = useParams();
-  const {FilterById}=useContext(ProductDataList)
-  const filterdProducts =FilterById(id)
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["productID"],
+    queryFn:()=> FilterProductID(id),
+  });
+  const filterdProducts = data;
+
 
   return (
     <Container>
+      {
+        isLoading && <Loader/>
+      }
       {filterdProducts &&
       <>
       <Breadcrumbs aria-label="breadcrumb" sx={{margin:2}}>

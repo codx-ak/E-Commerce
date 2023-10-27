@@ -6,20 +6,33 @@ import AvatarImg from '../assets/avatar.png'
 import BackButton from '../components/BackButton/BackButton'
 import { Link } from 'react-router-dom'
 import {ArrowForward } from '@mui/icons-material'
-import { LoginAccount } from '../Auth/Authentication'
 import {useNavigate} from 'react-router-dom'
-import { ProductDataList } from '../Context/ProductData'
+import {useSelector} from 'react-redux'
+import { Authenticate } from '../Auth/AuthContext'
+import { toast } from 'react-toastify'
 
 const Login = () => {
-  const {setAuthCheck}=useContext(ProductDataList)
+  const AuthData=useSelector(state=>state.AuthStore.value)
   const navigate=useNavigate()
   const {register,handleSubmit,formState:{errors}}=useForm()
+  const {setAuth}=useContext(Authenticate)
+  function handleLogin(data){
+    if(AuthData.some(e=>e.email===data.Email && e.pass===data.Psw)){
+      const Account=AuthData.findIndex(e=>e.email===data.Email)
+      toast.success("Login Successfully!");
+      setAuth({user:Account,check:true})
+      navigate('/')
+  }
+  else{
+      toast.error("Invalid Account!");
+  }
+  }
 
   return (
     <Container className='Auth'>
       <BackButton/>
       <Box sx={{display:'flex',justifyContent:"center",alignItems:"center",height:550}}>
-    <form action="" method="post" onSubmit={handleSubmit((e)=>LoginAccount(e,navigate,setAuthCheck))}>
+    <form action="" method="post" onSubmit={handleSubmit(handleLogin)}>
       <Card className='card' variant='outlined'>
       <Avatar alt="Ak" src={AvatarImg} sx={{ width: 80, height: 80 }}/>
       <Typography variant='h5'>Sign In</Typography>

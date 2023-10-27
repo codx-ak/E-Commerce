@@ -1,12 +1,21 @@
-import React from 'react'
-import {Button} from '@mui/material'
-import { ArrowBack } from '@mui/icons-material'
-import {Link} from 'react-router-dom'
+import React from "react";
+import { Button } from "@mui/material";
+import { ArrowBack } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const BackButton = () => {
   return (
-    <Button variant='text' startIcon={<ArrowBack/>} sx={{marginTop:3}} className='BackBtn' ><Link to='/home'>Back</Link></Button>
-  )
-}
+    <Link to="/home">
+    <Button
+      variant="text"
+      startIcon={<ArrowBack />}
+      sx={{ marginTop: 3 }}
+      className="BackBtn"
+    >
+      Back
+    </Button>
+    </Link>
+  );
+};
 
-export default BackButton
+export default BackButton;

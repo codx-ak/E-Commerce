@@ -72,10 +72,10 @@ export default function Header() {
                 onClose={handleClose}
               >
                 <Link to='/home'><MenuItem onClick={handleClose}><Button startIcon={<HomeIcon/>}>Home</Button></MenuItem></Link>
-                <Link to='/orders'><MenuItem onClick={handleClose}><Button startIcon={<StorefrontIcon/>}>Products</Button></MenuItem></Link>
+                <Link to='/products'><MenuItem onClick={handleClose}><Button startIcon={<StorefrontIcon/>}>Products</Button></MenuItem></Link>
                 <Link to='/orders'><MenuItem onClick={handleClose}><Button startIcon={<LocalShippingIcon/>}>Orders</Button></MenuItem></Link>
                 {
-                  IsAuth ?<Link to='/profile'><MenuItem onClick={handleClose}><Button startIcon={<PersonIcon/>}>Account</Button></MenuItem></Link>
+                  IsAuth.check ?<Link to='/logout'><MenuItem onClick={handleClose}><Button startIcon={<PersonIcon/>}>Logout</Button></MenuItem></Link>
                   : <Link to='/login'><MenuItem onClick={handleClose}><Button startIcon={<AdminPanelSettingsIcon/>}>Login</Button></MenuItem></Link>
                 }
                 

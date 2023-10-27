@@ -13,7 +13,7 @@ const CartItem = ({Product}) => {
   return (
 
     <Card variant='outlined' className='cartItem'>
-      <img src={Product.thumbnail} alt="" />
+      <img src={Product.thumbnail} alt="Product Image" loading='lazy' />
     <Box sx={{width:'30%',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>
       <Typography component='p' variant='subtitle1'>{Product.title}</Typography>
       <Rating readOnly value={Product.rating} size='small' precision={0.5}/>

@@ -7,12 +7,12 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
-import {ProductDataList} from '../../Context/ProductData'
 import {ArrowForward} from '@mui/icons-material'
+import { Authenticate } from '../../Auth/AuthContext';
 
 const PriceCard = ({Product}) => {
     const [Price,setPrice]=useState(0)
-    const {AuthCheck}=useContext(ProductDataList)
+    const {IsAuth}=useContext(Authenticate)
     useEffect(()=>{
         setPrice(Product.reduce((prev,curr)=>prev+curr.price*curr.count,0))
     },Product.count)
@@ -41,7 +41,7 @@ const PriceCard = ({Product}) => {
                 <TableRow>
                   <TableCell sx={{border:0}} >
                     {
-                      !AuthCheck ?
+                      IsAuth.check ?
                       <Link to='checkout'><Button variant="contained" endIcon={<ShoppingCartIcon />}>Buy Now</Button></Link>
                       :
                       <Link to='/login'><Button variant="contained"  endIcon={<ArrowForward />}>Login Now</Button></Link>

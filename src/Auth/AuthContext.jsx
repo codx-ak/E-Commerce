@@ -6,8 +6,7 @@ export const Authenticate = createContext();
 
 const AuthContext = ({ children }) => {
   //auth data default false
-  const [IsAuth, setAuth] = useState(false);
-
+  const [IsAuth, setAuth] = useState({user:null,check:false});
   return (
     <Authenticate.Provider value={{ IsAuth, setAuth }}>
       {children}

@@ -1,4 +1,4 @@
-import { Box, Card, Rating, Typography } from '@mui/material'
+import { Box, Rating, Typography } from '@mui/material'
 import React from 'react'
 
 const OrderItem = ({order}) => {

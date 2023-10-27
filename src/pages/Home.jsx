@@ -1,33 +1,56 @@
-import React, { useContext } from 'react'
-import ProductCard from '../components/Card/ProductCard'
-import { Box, Container, Typography } from '@mui/material'
-import { ProductDataList } from '../Context/ProductData'
-
+import React  from 'react'
+import { Box, Card, Container, Typography} from '@mui/material'
+import HomeImg from '../assets/home.jpg'
+import SecurityIcon from '@mui/icons-material/Security';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import ChatIcon from '@mui/icons-material/Chat';
+import { ProductCategory } from '../Api/ProductApi';
+import Loader from '../components/Spinner/Loader';
+import ProductCard from '../components/Card/ProductCard';
+import { useQuery } from '@tanstack/react-query';
 const Home = () => {
-  const {FilteredByRating,FilteredByBrand}=useContext(ProductDataList)
+  const { data, isLoading } = useQuery({
+    queryKey: ["Mobileproduct"],
+    queryFn: ProductCategory,
+  });
 
+
+  const Products=data || []
   return (
     <>
     <Box>
-      <Box className="home-banner"></Box>
+      <img src={HomeImg} height={370} width={'100%'} loading='lasy' alt="Home Img" />
     </Box>
     <Container>
-    <Typography variant='h4' sx={{textAlign:'center'}}>Popular Products</Typography>
-    <Box sx={{display:'flex',flexWrap:'wrap',gap:'5px',marginTop:4}}>
-      {FilteredByRating.length ? FilteredByRating.map((product)=>{
-        return(<ProductCard key={product.id} ProductData={product}/>)
-      }):<Typography variant='h4' color='gray' sx={{textAlign:'center',padding:'10%',width:'100%'}}>No Products Available</Typography>}
-    </Box>
-      {FilteredByBrand.length ?
-      <>
-    <Typography variant='h4' sx={{textAlign:'center',marginTop:10}}>Brand Products</Typography>
-    <Box sx={{display:'flex',flexWrap:'wrap',gap:'5px',marginTop:4}}>
-      {FilteredByBrand.map((product)=>{
-        return(<ProductCard key={product.id} ProductData={product}/>)
-      })}
-    </Box>
-    </>
-    : ''}
+        <Typography variant='h5' align='center' p={2}>Popular Products</Typography>
+      <Box sx={{display:'flex',gap:1,flexFlow:'row wrap'}}>
+        {
+          isLoading && <Loader/>
+        }
+        {
+          Products.map((product, index) => {
+            return <ProductCard key={product.id} ProductData={product} />;
+          })
+        }
+      </Box>
+      <Typography variant='h5' align='center' p={2}>Our Service</Typography>
+      <Box className='benifits'>
+        <Card className='b-item' sx={{boxShadow:2}} variant='outlined'>
+          <Typography component='div' className='b-icon'><SecurityIcon color='warning'/></Typography>
+          <Typography variant='h6'>Secure Package</Typography>
+          <Typography component='p'>Lorem ipsum, dolor sit amet consectetur adipisicing sit amet  adipisicing elit. Ducimus, rem.</Typography>
+        </Card>
+        <Card className='b-item' sx={{boxShadow:2}} variant='outlined'>
+          <Typography component='div' className='b-icon'><LocalShippingIcon color='warning'/></Typography>
+          <Typography variant='h6'>Free Delivery</Typography>
+          <Typography component='p'>Lorem ipsum, dolor sit amet consectetur adipisicing sit amet  adipisicing elit. Ducimus, rem.</Typography>
+        </Card>
+        <Card className='b-item' sx={{boxShadow:2}} variant='outlined'>
+          <Typography component='div' className='b-icon'><ChatIcon color='warning'/></Typography>
+          <Typography variant='h6'>24/7 Service</Typography>
+          <Typography component='p'>Lorem ipsum, dolor sit amet consectetur adipisicing sit amet  adipisicing elit. Ducimus, rem.</Typography>
+        </Card>
+      </Box>
     </Container>
     </>
   )

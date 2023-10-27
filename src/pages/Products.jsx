@@ -1,89 +1,68 @@
-import React, { useContext, useEffect, useState } from 'react'
-import {Container,Breadcrumbs,Typography, Button, Box, Card, Pagination, FormControl, Select, MenuItem, InputLabel} from '@mui/material'
-import ProductCard from '../components/Card/ProductCard'
-import { ProductDataList } from '../Context/ProductData'
-import {Link} from 'react-router-dom'
+import React from "react";
+import {
+  Container,
+  Breadcrumbs,
+  Typography,
+  Box,
+  TextField,
+} from "@mui/material";
+import ProductCard from "../components/Card/ProductCard";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
+import { ProductsAPI, SearchProduct } from "../Api/ProductApi";
+import Loader from "../components/Spinner/Loader";
 const Products = () => {
-  
-  const {AllProduct,FilteredByMobile,FilteredByLaptops,FilteredByDecoration,FilteredByFragrances}=useContext(ProductDataList)
-  
-  const [buttonSelect,setButton]=useState('All')
-  const [sortProduct,setsortProduct]=useState('')
+  const queryClient = useQueryClient();
+  const { data, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: ProductsAPI,
+  });
 
- const [filteredProduct,setProducts]=useState(AllProduct) 
-
- useEffect(()=>{
-    function FilteredProducts(){
-      if(buttonSelect=='All'){
-        setProducts(AllProduct)
-      }
-      if(buttonSelect==='Mobiles'){
-        setProducts(FilteredByMobile)
-      }
-      if(buttonSelect==='Laptops'){
-        setProducts(FilteredByLaptops)
-      }
-      if(buttonSelect==='Decoration'){
-        setProducts(FilteredByDecoration)
-      }
-      if(buttonSelect==='Fragrances'){
-        setProducts(FilteredByFragrances)
-      }
+  const {mutateAsync:SearchProductQuery,isPending}=useMutation({
+    mutationFn:SearchProduct,
+    onSuccess: (data) => {
+      queryClient.setQueriesData(["products"],data);
     }
-    FilteredProducts()
-  },[buttonSelect])
+  })
+  const AllProduct = data || [];
 
+  function Searchs(e){
+    SearchProductQuery(e.target.value)
+  }
+  
   return (
     <Container>
-      <Breadcrumbs aria-label="breadcrumb" sx={{margin:2}}>
-        <Link to='/home'>
-          Home
-        </Link>
-        
-        <Typography>
-        Category
-        </Typography>
+      <Breadcrumbs aria-label="breadcrumb" sx={{ margin: 2 }}>
+        <Link to="/home">Home</Link>
+
+        <Typography>Category</Typography>
       </Breadcrumbs>
       <Box>
-        <Box sx={{display:'flex',justifyContent:"space-around",alignItems:"center",gap:1}}>
-          <Box sx={{display:'flex',gap:1}}>
-          <Button type='button' onClick={()=>setButton("All")}  variant={buttonSelect==='All'?'contained':'outlined'}>All</Button>
-          <Button type='button' onClick={()=>setButton("Mobiles")} variant={buttonSelect==='Mobiles'?'contained':'outlined'}>Mobiles</Button>
-          <Button type='button' onClick={()=>setButton("Laptops")} variant={buttonSelect==='Laptops'?'contained':'outlined'}>Laptops</Button>
-          <Button type='button' onClick={()=>setButton("Decoration")} variant={buttonSelect==='Decoration'?'contained':'outlined'}>Decoration</Button>
-          <Button type='button' onClick={()=>setButton("Fragrances")} variant={buttonSelect==='Fragrances'?'contained':'outlined'}>Fragrances</Button>
-          </Box>
-          <Box>
-          <FormControl sx={{ m: 1, minWidth: 150 }}>
-          <InputLabel id="sort-label">Sort</InputLabel>
-        <Select
-          labelId="sort-label"
-          label="Sort"
-          onChange={(e)=>setsortProduct(e.target.value)}
-          value={sortProduct}
+        <Box
+        className='search-box'>
+            <TextField type="search" onChange={Searchs}  placeholder="Search Products..."/>
+        </Box>
+        <Box
+          sx={{ display: "flex", flexWrap: "wrap", gap: "5px", marginTop: 4 }}
         >
-          <MenuItem value=''>
-            <em>None</em>
-          </MenuItem>
-          <MenuItem name='Popular' value='Popular'>Popular</MenuItem>
-          <MenuItem name='Rating' value='Rating'>Rating</MenuItem>
-          <MenuItem name='Lowest' value='Lowest'>Lowest</MenuItem>
-          <MenuItem name='Highest' value='Highest'>Highest</MenuItem>
-        </Select>
-      </FormControl>
-          </Box>
+          {(isLoading || isPending) && <Loader />}
+          {AllProduct.length ? (
+            AllProduct.map((product, index) => {
+              return <ProductCard key={product.id} ProductData={product} />;
+            })
+          ) : (
+            <Typography
+              variant="h4"
+              color="gray"
+              sx={{ textAlign: "center", padding: "10%", width: "100%" }}
+            >
+              No Products Available
+            </Typography>
+          )}
         </Box>
-        <Box sx={{display:'flex',flexWrap:'wrap',gap:'5px',marginTop:4}}>
-        {AllProduct.length ? filteredProduct.map((product,index)=>{
-        return(<ProductCard key={product.id} ProductData={product}/>)
-      }):<Typography variant='h4' color='gray' sx={{textAlign:'center',padding:'10%',width:'100%'}}>No Products Available</Typography>}
-        </Box>
-      </Box>
-      <Box sx={{margin:3,display:'flex',justifyContent:'center'}}>
-      <Pagination count={filteredProduct.length%10==0 ?filteredProduct.length/10:1} variant="outlined" shape="rounded" />
       </Box>
     </Container>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;
