@@ -1,5 +1,5 @@
 import { Button, Card, Typography } from '@mui/material'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext} from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
 import Table from '@mui/material/Table';
@@ -11,13 +11,10 @@ import {ArrowForward} from '@mui/icons-material'
 import { Authenticate } from '../../Auth/AuthContext';
 
 const PriceCard = ({Product}) => {
-    const [Price,setPrice]=useState(0)
-    const {IsAuth}=useContext(Authenticate)
-    useEffect(()=>{
-        setPrice(Product.reduce((prev,curr)=>prev+curr.price*curr.count,0))
-    },Product.count)
 
-  return (
+    const {IsAuth}=useContext(Authenticate)
+
+  return ( 
     <Card className='cart-price-card' variant='outlined'>
         {
             Product.length && 
@@ -28,7 +25,7 @@ const PriceCard = ({Product}) => {
               <TableBody>
                 <TableRow>
                   <TableCell sx={{color:'gray'}}>Subtotal</TableCell>
-                  <TableCell sx={{color:'gray'}} align="right"> $ {Price}.00</TableCell>
+                  <TableCell sx={{color:'gray'}} align="right"> $ {Product.reduce((prev,curr)=>prev+curr.price*curr.count,0)}.00</TableCell>
                 </TableRow>
                 <TableRow >
                   <TableCell sx={{color:'gray'}}>Shipping</TableCell>
@@ -36,7 +33,7 @@ const PriceCard = ({Product}) => {
                 </TableRow>
                 <TableRow sx={{border:0}} >
                   <TableCell sx={{fontWeight:'bold',color:'gray'}}> Total</TableCell>
-                  <TableCell sx={{fontWeight:'bold',color:'gray'}} align="right"> $ {Price}.00</TableCell>
+                  <TableCell sx={{fontWeight:'bold',color:'gray'}} align="right"> $ {Product.reduce((prev,curr)=>prev+curr.price*curr.count,0)}.00</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell sx={{border:0}} >
